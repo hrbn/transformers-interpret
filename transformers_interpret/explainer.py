@@ -167,8 +167,8 @@ class BaseExplainer(ABC):
             Tuple[torch.Tensor, torch.Tensor]
         """
         seq_len = input_ids.size(1)
-        position_ids = torch.arange(seq_len, dtype=torch.long, device=self.device)
-        ref_position_ids = torch.zeros(seq_len, dtype=torch.long, device=self.device)
+        position_ids = torch.arange(seq_len, dtype=torch.int, device=self.device)
+        ref_position_ids = torch.zeros(seq_len, dtype=torch.int, device=self.device)
         position_ids = position_ids.unsqueeze(0).expand_as(input_ids)
         ref_position_ids = ref_position_ids.unsqueeze(0).expand_as(input_ids)
         return (position_ids, ref_position_ids)
